@@ -5,6 +5,15 @@ Liste de jeux et consoles en ma possession
 
 Ce site sera ma bibliothèque dédié aux jeux vidéos afin de les répertorier et ainsi, lors de trouvaille, savoir si cette dernière est en ma possession ou pas.
 
-Le site sera principalement développer en PHP et Symfony. Pas besoin de quelque chose de très élaboré.
+Le site sera principalement développer en PHP (version à définir) et Symfony 5.4 (pour la stabilité). Pas besoin de quelque chose de très élaboré.
 
 En revanche, il sera produit en mobile first.
+
+Il sera privé, donc protégé par identifiant et mot de passe.
+
+## A faire dans un premier temps :
+
+[ ] Trouver un nom plus sympathique :)
+[ ] Faire un wireframe ou directement une maquette
+[ ] Faire un intégration html simple
+
