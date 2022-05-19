@@ -9,7 +9,7 @@ Le site sera principalement développer en PHP (version à définir) et Symfony 
 
 En revanche, il sera produit en mobile first.
 
-Il sera privé, donc protégé par identifiant et mot de passe.
+Il sera privé, donc protégé par identifiant et mot de passe. Etant privé, pas de backoffice particulier à prévoir.
 
 ## A faire dans un premier temps :
 
