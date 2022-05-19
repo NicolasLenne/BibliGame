@@ -8,3 +8,4 @@ Ici les user stories, elles vont me permettrent d'avoir une idée sur les foncti
 | Utilisateur | Accéder à la page d'accueil | Voir mes dernières acquisitions |
 | Utilisateur | Accéder à la fiche d'une acquisition | Modifier les informations |
 | Utilisateur | Accéder la liste des consoles en ma possession | De voir mes consoles et pouvoir cliquer sur l'une d'elle pour y voir la liste des jeux acquis de cette dernière |
+| Utilisateur | Accéder à ma liste d'envies | Voir ma liste d'envie et de pouvoir en ajouter |
