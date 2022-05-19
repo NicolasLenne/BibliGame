@@ -4,3 +4,4 @@ Ici les user stories, elles vont me permettrent d'avoir une idée sur les foncti
 
 | En tant que ... | Je veux ... | Afin de ... |
 |----|----|----|
+| Utilisateur | Accéder à la page de connexion | Accéder à ma bibliothèque |
