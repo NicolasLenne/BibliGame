@@ -3,7 +3,8 @@ Liste de jeux et consoles en ma possession
 
 ## Description
 
-Ce site sera ma bibliothèque dédié aux jeux vidéos afin de les répertorier et ainsi, lors de trouvaille, savoir si cette dernière est en ma possession ou pas.
+Ce site sera ma bibliothèque dédié aux jeux vidéos afin de les répertorier et ainsi, lors de trouvaille, savoir si cette dernière est en ma possession ou pas. 
+Exemple de situation : Je suis dans un magasin de retrogaming, je trouve Tomb Raid 1 mais je sais que chez moi j'en ai déjà 2 en ma possession mais plus moyen de me souvenir de mes jeux en possession. Alors petit check de ma liste et si je n'ai pas j'achète ! et je l'ajout dans ma liste. Je pourrais, également faire une photos du jeux.
 
 Le site sera principalement développer en PHP (version à définir) et Symfony 5.4 (pour la stabilité). Pas besoin de quelque chose de très élaboré.
 
