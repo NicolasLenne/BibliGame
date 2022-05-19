@@ -16,5 +16,6 @@ Il sera privé, donc protégé par identifiant et mot de passe. Etant privé, pa
 - [ ] Trouver un nom plus sympathique :)
 - [ ] Faire un wireframe ou directement une maquette
 - [ ] Faire un intégration html simple
+- [ ] Rédaction des [User stories](https://github.com/NicolasLenne/VideoGames-List/blob/main/user-stories.md)
 
 ### Commencement du projet début juin
