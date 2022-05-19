@@ -1,7 +1,7 @@
 # VideoGames-List
 Liste de jeux et consoles en ma possession
 
-## Description
+## Description
 
 Ce site sera ma bibliothèque dédié aux jeux vidéos afin de les répertorier et ainsi, lors de trouvaille, savoir si cette dernière est en ma possession ou pas.
 
