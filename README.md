@@ -13,7 +13,7 @@ Il sera privé, donc protégé par identifiant et mot de passe.
 
 ## A faire dans un premier temps :
 
-[ ] Trouver un nom plus sympathique :)
-[ ] Faire un wireframe ou directement une maquette
-[ ] Faire un intégration html simple
+- [ ] Trouver un nom plus sympathique :)
+- [ ] Faire un wireframe ou directement une maquette
+- [ ] Faire un intégration html simple
 
