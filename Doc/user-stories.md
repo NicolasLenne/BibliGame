@@ -2,7 +2,7 @@
 
 Ici les user stories, elles vont me permettrent d'avoir une idée sur les fonctionnalitées que je souhaite mettre en place.
 
-### Partie visiteur
+## Partie visiteur
 
 | En tant que ... | Je veux ... | Afin de ... |
 |----|----|----|
@@ -11,9 +11,9 @@ Ici les user stories, elles vont me permettrent d'avoir une idée sur les foncti
 | Visiteur | Accéder à la page de connexion | Me connecter à mon compte |
 | Visiteur | Accéder à la page contact | Contacter l'adminitrateur en cas de problème |
 | Visiteur | Accéder à la page CGU | De connaître les conditions générales d'utilisation avant de m'inscrire |
-| Visiteur | Accéder à la page des mentions légales | Permettre de connaitre les différentes informations importantes liés au site |
+| Visiteur | Accéder à la page des mentions légales | Permettre de connaitre les informations importantes liés au site |
 
-### Partie utilisateur
+## Partie utilisateur
 
 | En tant que ... | Je veux ... | Afin de ... |
 |----|----|----|
@@ -26,7 +26,7 @@ Ici les user stories, elles vont me permettrent d'avoir une idée sur les foncti
 | Utilisateur | Accéder à ma liste d'envies | Voir ma liste d'envie et de pouvoir en ajouter |
 |----|----|----|
 
-### Partie administrateur
+## Partie administrateur
 
 | En tant que ... | Je veux ... | Afin de ... |
 |----|----|----|
