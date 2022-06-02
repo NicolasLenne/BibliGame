@@ -3,20 +3,21 @@ Liste de jeux et consoles en ma possession
 
 ## Description
 
-Ce site sera ma bibliothèque dédié aux jeux vidéos afin de les répertorier et ainsi, lors de trouvaille, savoir si cette dernière est en ma possession ou pas. 
-Exemple de situation : Je suis dans un magasin de retrogaming, je trouve Tomb Raid 1 mais je sais que chez moi j'en ai déjà 2 en ma possession mais plus moyen de me souvenir de mes jeux en possession. Alors petit check de ma liste et si je n'ai pas j'achète ! et je l'ajoute dans ma liste. Je pourrais, également faire une photos du jeux.
+Ce site sera une bibliothèque dédié aux jeux vidéos afin de répertorier les jeux en sa possession. Destiné surtout à un public de collectionneur retro ou pas, souhaitant avoir sa liste de jeux à disposition permettant ainsi de connaitre, à tout moment, les jeux en leur possession en cas de trouvaille.
 
-Le site sera principalement développer en PHP (version à définir) et Symfony 5.4 (pour la stabilité). Pas besoin de quelque chose de très élaboré.
+Exemple de situation : Je suis dans un magasin de retrogaming, je trouve Tomb Raid 1 mais je sais que chez moi j'en ai déjà 2 en ma possession mais plus moyen de me souvenir de ceux en ma possession. Alors petit check de ma liste et si je n'ai pas j'achète ! et je l'ajoute dans ma liste. Je pourrais, également faire une photos du jeux.
+
+Le site sera principalement développer en PHP (version à définir) et Symfony 5.4 (pour la stabilité).
 
 En revanche, il sera produit en mobile first.
 
-Il sera privé, donc protégé par identifiant et mot de passe. Etant privé, pas de backoffice particulier à prévoir.
+De base privé, mais finalement je vais opter pour le rendre public. Donc prévoir une gestion d'utilisateur et un backoffice.
 
 ## A faire :
 
 - [ ] Rédaction des [User stories](https://github.com/NicolasLenne/VideoGames-List/blob/main/user-stories.md)
 - [ ] Mise en place du MCD et dictionnaire de données
-- [ ] Trouver un nom plus sympathique :)
+- [x] Trouver un nom plus sympathique :)
 - [ ] Faire un wireframe ou directement une maquette
 - [ ] Faire une intégration html simple pour avoir une base (ex. header, menu, footer, contenu fictif)
 
