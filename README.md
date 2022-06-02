@@ -12,11 +12,12 @@ En revanche, il sera produit en mobile first.
 
 Il sera privé, donc protégé par identifiant et mot de passe. Etant privé, pas de backoffice particulier à prévoir.
 
-## A faire dans un premier temps :
+## A faire :
 
+- [ ] Rédaction des [User stories](https://github.com/NicolasLenne/VideoGames-List/blob/main/user-stories.md)
+- [ ] Mise en place du MCD et dictionnaire de données
 - [ ] Trouver un nom plus sympathique :)
 - [ ] Faire un wireframe ou directement une maquette
-- [ ] Faire un intégration html simple pour avoir une base (ex. header, menu, footer)
-- [ ] Rédaction des [User stories](https://github.com/NicolasLenne/VideoGames-List/blob/main/user-stories.md)
+- [ ] Faire une intégration html simple pour avoir une base (ex. header, menu, footer, contenu fictif)
 
-### Commencement du projet début juin
+### Commencement du projet courant juin
