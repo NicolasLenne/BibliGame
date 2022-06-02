@@ -1,4 +1,4 @@
-# VideoGames-List
+# BibliGame
 Liste de jeux et consoles en ma possession
 
 ## Description
