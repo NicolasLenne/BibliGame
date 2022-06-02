@@ -15,7 +15,7 @@ De base privé, mais finalement je vais opter pour le rendre public. Donc prévo
 
 ## A faire :
 
-- [ ] Rédaction des [User stories](https://github.com/NicolasLenne/VideoGames-List/blob/main/user-stories.md)
+- [ ] Rédaction des User stories
 - [ ] Mise en place du MCD et dictionnaire de données
 - [x] Trouver un nom plus sympathique :)
 - [ ] Faire un wireframe ou directement une maquette
