@@ -1,0 +1,7 @@
+HAS CONSOLE, 0N CONSOLE, 0N USER: wish
+CONSOLE: code console, name, condition, photo
+HAS PLATFORM, 0N GAME, 1N CONSOLE
+
+USER: code user, firstname, lastname, mail, picture,
+HAS GAME, 0N GAME, 0N USER: wish
+GAME: code game, name, condition, photo, platform

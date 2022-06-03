@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+</style>
+</head>
+<body>
+<div id='mld'>
+<div>
+  <span class='relation'>HAS CONSOLE</span> (
+    <span class='foreign primary'>code console</span>,
+    <span class='foreign primary'>code user</span>,
+    <span class='normal'>wish</span>
+  )
+</div>
+<div>
+  <span class='relation'>CONSOLE</span> (
+    <span class='primary'>code console</span>,
+    <span class='normal'>name</span>,
+    <span class='normal'>condition</span>,
+    <span class='normal'>photo</span>
+  )
+</div>
+<div>
+  <span class='relation'>HAS PLATFORM</span> (
+    <span class='foreign primary'>code game</span>,
+    <span class='foreign primary'>code console</span>
+  )
+</div>
+<div>
+  <span class='relation'>USER</span> (
+    <span class='primary'>code user</span>,
+    <span class='normal'>firstname</span>,
+    <span class='normal'>lastname</span>,
+    <span class='normal'>mail</span>,
+    <span class='normal'>picture</span>,
+    <span class='normal'></span>
+  )
+</div>
+<div>
+  <span class='relation'>HAS GAME</span> (
+    <span class='foreign primary'>code game</span>,
+    <span class='foreign primary'>code user</span>,
+    <span class='normal'>wish</span>
+  )
+</div>
+<div>
+  <span class='relation'>GAME</span> (
+    <span class='primary'>code game</span>,
+    <span class='normal'>name</span>,
+    <span class='normal'>condition</span>,
+    <span class='normal'>photo</span>,
+    <span class='normal'>platform</span>
+  )
+</div>
+</div>
+</body>
+</html>
