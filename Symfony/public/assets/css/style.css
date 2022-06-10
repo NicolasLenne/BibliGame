@@ -1,0 +1,8 @@
+.picture {
+    background-image: url('../img/head_main.jpg');
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70vh;
+    width: 100%;
+}
