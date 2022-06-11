@@ -1,8 +1,17 @@
 .picture {
     background-image: url('../img/head_main.jpg');
     background-size:cover;
-    background-position: center;
+    background-position:center;
     background-repeat: no-repeat;
-    height: 70vh;
+    height: 40vh;
+    width: 100%;
+}
+
+main {
+    background-image: url('../img/wave.svg');
+    background-size:cover;
+    background-position:top;
+    background-repeat: no-repeat;
+    height: 50vh;
     width: 100%;
 }
