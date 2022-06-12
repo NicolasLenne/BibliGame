@@ -7,11 +7,15 @@
     width: 100%;
 }
 
-main {
+.main__top {
     background-image: url('../img/wave.svg');
     background-size:cover;
     background-position:top;
     background-repeat: no-repeat;
     height: 50vh;
     width: 100%;
+}
+
+.color {
+    color: #273036;
 }
