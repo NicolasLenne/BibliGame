@@ -9,10 +9,9 @@
 
 .main__top {
     background-image: url('../img/wave.svg');
-    background-size:auto;
+    background-size:cover;
     background-position:top;
     background-repeat: no-repeat;
-
     width: 100%;
 }
 
