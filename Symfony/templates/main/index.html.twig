@@ -18,15 +18,59 @@
         </p>
         <p class="is-align-self-flex-end pr-2"><a href="">Connexion</a> - <a href="">Inscription</a></p>
     </section>
-    <section class="main__content is-flex is-flex-direction-row">
-        <div class="is-flex is-flex-direction-column is-flex-wrap-nowrap">
+    <section class="main__content is-flex is-flex-direction-row is-flex-wrap-wrap is-align-items-center">
+        <div class="main__content-card px-4 my-6 is-flex is-flex-direction-column is-flex-wrap-nowrap">
             <img src="{{ asset('assets/img/cartridge.svg')}}" alt="">
-            <p>Inscris-toi et profite d’un espace afin de ranger virtuellement tes jeux que tu possède physiquement.</p>
+            <p class="has-text-centered pt-4">Inscris-toi et profite d’un espace afin de ranger virtuellement tes jeux que tu possède physiquement.</p>
+        </div>
+        <div class="main__content-card px-4 my-6 is-flex is-flex-direction-column is-flex-wrap-nowrap">
+            <img src="{{ asset('assets/img/search.svg')}}" alt="">
+            <p class="has-text-centered pt-4">Consulte ta liste de jeux à tout moment. Le jour d'une nouvelle acquisition elle te sera utile pour t'y retrouver.</p>
+        </div>
+        <div class="main__content-card px-4 my-6 is-flex is-flex-direction-column is-flex-wrap-nowrap">
+            <img src="{{ asset('assets/img/heart.svg')}}" alt="">
+            <p class="has-text-centered pt-4">Créé une wishlist pour ainsi te souvenir des jeux ou consoles que tu aimerais acquérir !</p>
+        </div>
+    </section>
+    <section class="main__signin mb-4">
+        <h3 class="subtitle is-3 has-text-centered">Inscription</h3>
+        <p class="has-text-centered">Déjà inscrit ? <a href="">Connexion</a></p>
+        <div class="main__signin-form py-4 px-4">
+            <form action="" method="post">
+                <div class="field">
+                    <label class="label">Nom</label>
+                    <div class="control">
+                    <input class="input" type="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Prénom</label>
+                    <div class="control">
+                    <input class="input" type="text">
+                    </div>
+                </div>            
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                    <input class="input" type="email">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Mot de passe</label>
+                    <div class="control">
+                    <input class="input" type="password">
+                </div>
+                </div>
+                <div class="control">
+                    <button class="button is-info is-rounded">S'inscrire</button>
+                </div>
+            </form>
         </div>
     </section>
 </main>
-<footer>
-    
+<footer class="py-4 has-text-centered">
+    <p>Tous droits réservés - Copyright 2022</p>
+    <p><a href="">CGU</a> - <a href="">Mentions Légales</a></p>
 </footer>
 
 {% endblock %}

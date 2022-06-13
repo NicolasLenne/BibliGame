@@ -9,13 +9,27 @@
 
 .main__top {
     background-image: url('../img/wave.svg');
-    background-size:cover;
+    background-size:auto;
     background-position:top;
     background-repeat: no-repeat;
-    height: 50vh;
+
     width: 100%;
 }
 
 .color {
     color: #273036;
+}
+
+.main__content-card > img {
+    width: 200px;
+    margin: auto;
+}
+
+.main__content-card > p {
+    font-size: 1.2em;
+}
+
+footer {
+    background-color: #273036;
+    color: white;
 }
