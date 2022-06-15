@@ -8,11 +8,17 @@
 }
 
 .main__top {
-    background-image: url('../img/wave.svg');
-    background-size:cover;
-    background-position:top;
-    background-repeat: no-repeat;
     width: 100%;
+    position: relative;
+}
+
+.main__top-description {
+    background-color: #273036;
+}
+
+.main__top-sign {
+    position: absolute;
+    bottom: 10%;
 }
 
 .color {
