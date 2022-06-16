@@ -18,11 +18,17 @@
 
 .main__top-sign {
     position: absolute;
-    bottom: 10%;
+    top: 30%;
+    right: 1rem;
 }
 
 .color {
     color: #273036;
+}
+
+
+.main__content-card {
+    align-self: flex-start;
 }
 
 .main__content-card > img {
@@ -38,3 +44,50 @@ footer {
     background-color: #273036;
     color: white;
 }
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+    
+ }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .picture {
+        height: 60vh;
+    }
+ }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .main__top-description > p {
+        font-size: 1.2em;
+        position: absolute;
+        z-index: 1;
+        background: none;
+    }
+
+    .main__content-card {
+        width: 25%;
+    }
+
+    .main__signin-form {
+        width: 40%;
+        margin: 2rem auto;
+    }
+ }
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
+ }
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+    .picture {
+        height: 80vh;
+    }
+
+    .main__content-card > p {
+        padding: 0 2em;
+    }
+ }
