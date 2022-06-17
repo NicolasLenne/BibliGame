@@ -1,22 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-{% if error %}
-<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
-<form action="{{ path('login') }}" method="post">
-    <div class="mb-3">
-        <label for="username" class="form-label">Adresse email</label>
-        <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}">
+<header>
+    <div class="has-text-centered py-4">
+        <h1 class="title">BibliGame</h1>
+        <h2 class="subtitle">Votre bibliothèque dédié aux jeux video</h2>
     </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Mot de passe</label>
-        <input type="password" class="form-control" id="password" name="_password">
+</header>
+<hr>
+<section class="login">
+    <h3 class="title is-4 has-text-centered">Connectez-vous à votre compte</h3>
+    {% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <form action="{{ path('login') }}" method="post">
+        <div class="field">
+            <label for="username" class="label">Email</label>
+            <div class="control">
+                <input class="input" type="email" placeholder="ex. alexsmith@gmail.com" id="username" name="_username" value="{{ last_username }}">
+            </div>
+        </div>
+        <div class="field">
+            <label for="password" class="label">Mot de passe</label>
+            <div class="control">
+                <input class="input" type="password" placeholder="Mot de passe" id="password" name="_password">
+            </div>
+        </div>
+        {# If you want to control the URL the user is redirected to on success
+        <input type="hidden" name="_target_path" value="/account" /> #}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <div class="field mt-4">
+            <p class="control">
+            <button class="button is-info is-rounded">
+                Connexion
+            </button>
+            </p>
+        </div>    
+    </form>
+    <div class="mt-4 has-text-right">
+        <a href="{{ path('main_home') }}">Retour à l'accueil</a>        
     </div>
-    {# If you want to control the URL the user is redirected to on success
-    <input type="hidden" name="_target_path" value="/account" /> #}
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-    <button type="submit" class="btn btn-outline-primary btn-sm">Connexion</button>
-</form>
+</section>
 {% endblock %}
