@@ -16,6 +16,7 @@
         "symfony/console": "*",
         "symfony/dotenv": "*",
         "symfony/flex": "^1.17|^2",
+        "symfony/form": "5.4.*",
         "symfony/framework-bundle": "*",
         "symfony/monolog-bundle": "^3.0",
         "symfony/proxy-manager-bridge": "5.4.*",
@@ -23,6 +24,7 @@
         "symfony/security-bundle": "5.4.*",
         "symfony/security-csrf": "5.4.*",
         "symfony/twig-bundle": "5.4.*",
+        "symfony/validator": "5.4.*",
         "symfony/yaml": "*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
