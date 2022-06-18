@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegisterType;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,20 +58,15 @@ class MainController extends AbstractController
     {
         $user = new User();
 
-        $form = $this->createForm(RegisterType::class, $user);
-        $form->handleRequest($request);
-        dd($form);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $user->setFirstname($request->request->get('firstname'));
+        $user->setLastname($request->request->get('lastname'));
+        $user->setEmail($request->request->get('email'));
+        // A FINIR
 
-            $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
 
-            $user->setPassword($hashedPassword);
+        $entityManager->persist($user);
 
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('main_home', [], Response::HTTP_SEE_OTHER);
-        }
+        dd($user);
 
         return $this->redirectToRoute('main_home', [], Response::HTTP_SEE_OTHER);
     }
