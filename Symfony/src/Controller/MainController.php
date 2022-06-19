@@ -32,7 +32,7 @@ class MainController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             $this->addFlash('success', 'Utilisateur ajouté');
-            return $this->redirectToRoute('back_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('login', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('main/index.html.twig', [

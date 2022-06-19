@@ -32,11 +32,9 @@ class RegisterType extends AbstractType
             ->add('password', PasswordType::class, [
                 'label' => false,
                 'attr' =>  ['class' => 'input'],
-                    'empty_data' => '',
                     'constraints' => [
-                        new NotBlank(),
                         new Regex(
-                            "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/",
+                            "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/",
                             "Le mot de passe doit contenir au minimum 8 caractères, une majuscule, un chiffre et un caractère spécial"
                         ),
                 ],
