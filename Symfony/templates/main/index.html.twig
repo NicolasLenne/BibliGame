@@ -41,7 +41,7 @@
         <h3 class="subtitle is-3 has-text-centered">Inscription</h3>
         <p class="has-text-centered">Déjà inscrit ? <a href="{{ path('login') }}">Connexion</a></p>
         <div class="main__signin-form py-4 px-4">
-            <form action="{{ path('register') }}" method="post">
+            {# <form action="" method="post">
                 <div class="field">
                     <label class="label">Nom</label>
                     <div class="control">
@@ -57,19 +57,29 @@
                 <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
-                    <input class="input" type="email" id="username" name="username">
+                    <input class="input" type="email" id="email" name="email">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Mot de passe</label>
                     <div class="control">
                     <input class="input" type="password" id="password" name="password">
-                </div>
+                    </div>
                 </div>
                 <div class="control">
                     <button class="button is-info is-rounded">S'inscrire</button>
                 </div>
-            </form>
+            </form> #}
+            {{ form_start(registerForm, {attr: {novalidate: 'novalidate'}}) }}
+            <div class="field">
+                <label class="label">Nom</label>
+                <div class="control">
+                    {{ form_row(registerForm.lastname)}}
+                </div>
+            </div>
+            {{ form_widget(registerForm) }}
+            <button class="button is-info is-rounded">{{ button_label|default('S\'inscrire') }}</button>
+            {{ form_end(registerForm) }}
         </div>
     </section>
 </main>

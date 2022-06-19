@@ -18,10 +18,26 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="main_home")
      */
-    public function index(): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
+        $user = new User();
+        $form = $this->createForm(RegisterType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $hashedPassword = $userPasswordHasherInterface->hashPassword($user, $user->getPassword());
+            $user->setPassword($hashedPassword);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            $this->addFlash('success', 'Utilisateur ajouté');
+            return $this->redirectToRoute('back_user_index', [], Response::HTTP_SEE_OTHER);
+        }
+
         return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController',
+            'registerForm' => $form->createView(),
         ]);
     }
 
@@ -49,25 +65,5 @@ class MainController extends AbstractController
     {
         // // controller can be blank: it will never be called!
         // return $this->redirectToRoute('login', [], Response::HTTP_SEE_OTHER);
-    }
-
-    /**
-     * @Route("/register", name="register", methods={"POST"})
-     */
-    public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): response
-    {
-        $user = new User();
-
-        $user->setFirstname($request->request->get('firstname'));
-        $user->setLastname($request->request->get('lastname'));
-        $user->setEmail($request->request->get('email'));
-        // A FINIR
-
-
-        $entityManager->persist($user);
-
-        dd($user);
-
-        return $this->redirectToRoute('main_home', [], Response::HTTP_SEE_OTHER);
     }
 }
