@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GameRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Game
      * @ORM\Column(type="text", nullable=true)
      */
     private $comment;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Console::class, mappedBy="games")
+     */
+    private $consoles;
+
+    public function __construct()
+    {
+        $this->consoles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,33 @@ class Game
     public function setComment(?string $comment): self
     {
         $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Console>
+     */
+    public function getConsoles(): Collection
+    {
+        return $this->consoles;
+    }
+
+    public function addConsole(Console $console): self
+    {
+        if (!$this->consoles->contains($console)) {
+            $this->consoles[] = $console;
+            $console->addGame($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConsole(Console $console): self
+    {
+        if ($this->consoles->removeElement($console)) {
+            $console->removeGame($this);
+        }
 
         return $this;
     }
