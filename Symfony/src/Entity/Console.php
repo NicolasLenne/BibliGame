@@ -44,6 +44,12 @@ class Console
      */
     private $games;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="consoles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->games = new ArrayCollection();
@@ -122,6 +128,18 @@ class Console
     public function removeGame(Game $game): self
     {
         $this->games->removeElement($game);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
