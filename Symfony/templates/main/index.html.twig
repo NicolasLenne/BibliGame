@@ -41,7 +41,7 @@
         <h3 class="subtitle is-3 has-text-centered">Inscription</h3>
         <p class="has-text-centered">Déjà inscrit ? <a href="{{ path('login') }}">Connexion</a></p>
         <div class="main__signin-form py-4 px-4">
-            {{ form_start(registerForm, {attr: {novalidate: 'novalidate'}}) }}
+            {{ form_start(registerForm) }}
             <div class="field">
                 <label class="label">Nom</label>
                 <div class="control">
