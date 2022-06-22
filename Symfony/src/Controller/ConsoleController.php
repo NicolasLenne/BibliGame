@@ -21,7 +21,7 @@ class ConsoleController extends AbstractController
     public function index(ConsoleRepository $consoleRepository): Response
     {
         return $this->render('console/index.html.twig', [
-            'consoles' => $consoleRepository->findAll(),
+            'consoles' => $consoleRepository->findBy(['user' => $this->getUser()]),
         ]);
     }
 
@@ -35,6 +35,7 @@ class ConsoleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $console->setUser($this->getUser());
             $consoleRepository->add($console, true);
 
             return $this->redirectToRoute('app_console_index', [], Response::HTTP_SEE_OTHER);
