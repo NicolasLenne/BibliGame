@@ -1,0 +1,38 @@
+{% extends 'member.html.twig' %}
+
+{% block title %}Console{% endblock %}
+
+{% block body %}
+    <h1>Console</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ console.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ console.name }}</td>
+            </tr>
+            <tr>
+                <th>IsLoose</th>
+                <td>{{ console.isLoose ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ console.photo }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ console.comment }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_console_index') }}">back to list</a>
+
+    <a href="{{ path('app_console_edit', {'id': console.id}) }}">edit</a>
+
+    {{ include('console/_delete_form.html.twig') }}
+{% endblock %}

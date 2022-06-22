@@ -1,0 +1,11 @@
+{% extends 'member.html.twig' %}
+
+{% block title %}New Console{% endblock %}
+
+{% block body %}
+    <h1>Create new Console</h1>
+
+    {{ include('console/_form.html.twig') }}
+
+    <a href="{{ path('app_console_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'member.html.twig' %}
+
+{% block title %}Console index{% endblock %}
+
+{% block body %}
+    <h1>Console index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>IsLoose</th>
+                <th>Photo</th>
+                <th>Comment</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for console in consoles %}
+            <tr>
+                <td>{{ console.id }}</td>
+                <td>{{ console.name }}</td>
+                <td>{{ console.isLoose ? 'Yes' : 'No' }}</td>
+                <td>{{ console.photo }}</td>
+                <td>{{ console.comment }}</td>
+                <td>
+                    <a href="{{ path('app_console_show', {'id': console.id}) }}">show</a>
+                    <a href="{{ path('app_console_edit', {'id': console.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_console_new') }}">Create new</a>
+{% endblock %}

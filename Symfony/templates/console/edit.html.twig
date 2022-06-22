@@ -1,0 +1,13 @@
+{% extends 'member.html.twig' %}
+
+{% block title %}Edit Console{% endblock %}
+
+{% block body %}
+    <h1>Edit Console</h1>
+
+    {{ include('console/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_console_index') }}">back to list</a>
+
+    {{ include('console/_delete_form.html.twig') }}
+{% endblock %}
