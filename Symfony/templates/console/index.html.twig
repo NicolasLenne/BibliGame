@@ -7,30 +7,36 @@
 
 <a href="{{ path('app_console_new') }}">Create new</a>
 
-<div>
+<div class="columns">
     {% for console in consoles %}
-    <div class="card">
-        <div class="card-image">
-            <figure class="image is-4by3">
-                <img src="{{ asset('assets/img/no-pictures.svg') }}" alt="Placeholder image">
-            </figure>
-        </div>
-        <div class="card-content">
-            <div class="media">
-                <div class="media-content">
-                    <p class="title is-4">{{ console.name }}</p>
-                    <p class="subtitle is-6">{{ console.isLoose ? 'En loose' : 'Avec boîte d\'origine' }}</p>
+    <div class="column is-one-quarter">
+        <div class="card is-3">
+            <div class="card-image">
+                <figure class="image is-4by3">
+                    {% if console.photo is not null %}
+                    <img src="{{ console.photo }}" alt="" srcset="">
+                    {% else %}
+                    <img src="{{ asset('assets/img/no-pictures.svg') }}" alt="Placeholder image">
+                    {% endif %}
+                </figure>
+            </div>
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        <p class="title is-4">{{ console.name }}</p>
+                        <p class="subtitle is-6">{{ console.isLoose ? 'En loose' : 'Avec boîte d\'origine' }}</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    {{ console.comment }}
                 </div>
             </div>
-
-            <div class="content">
-                {{ console.comment }}
-            </div>
+            <footer class="card-footer">
+                <a href="{{ path('app_console_show', {'id': console.id}) }}" class="card-footer-item">Afficher</a>
+                <a href="{{ path('app_console_edit', {'id': console.id}) }}" class="card-footer-item">Modifier</a>
+            </footer>
         </div>
-        <footer class="card-footer">
-            <a href="{{ path('app_console_show', {'id': console.id}) }}" class="card-footer-item">Afficher</a>
-            <a href="{{ path('app_console_edit', {'id': console.id}) }}" class="card-footer-item">Modifier</a>
-          </footer>
     </div>
     {% else %}
     <p>Vous n'avez aucune console pour le moment.</p>
