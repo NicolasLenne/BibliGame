@@ -20,7 +20,11 @@
         </div>
         <div class="is-relative">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#273036" fill-opacity="1" d="M0,160L120,144C240,128,480,96,720,80C960,64,1200,64,1320,64L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <p class="main__top-sign is-align-self-flex-end pr-2">Bonjour {{ app.user.firstname }}, <a href="{{ path('app_game_index') }}">votre espace</a></p>
+            {% else %}
             <p class="main__top-sign is-align-self-flex-end pr-2"><a href="{{ path('login') }}">Connexion</a> - <a href="#signin">Inscription</a></p>
+            {% endif %}
         </div>
     </section>
     <section class="main__content is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-around">
@@ -37,6 +41,7 @@
             <p class="has-text-centered pt-4">Créé une wishlist pour ainsi te souvenir des jeux ou consoles que tu aimerais acquérir !</p>
         </div>
     </section>
+    {% if not app.user %}
     <section class="main__signin mb-4" id="signin">
         <h3 class="subtitle is-3 has-text-centered">Inscription</h3>
         <p class="has-text-centered">Déjà inscrit ? <a href="{{ path('login') }}">Connexion</a></p>
@@ -73,6 +78,7 @@
             {{ form_end(registerForm) }}
         </div>
     </section>
+    {% endif %}
 </main>
 <footer class="py-4 has-text-centered">
     <p>Tous droits réservés - Copyright 2022</p>
