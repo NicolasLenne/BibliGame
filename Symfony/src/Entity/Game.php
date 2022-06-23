@@ -40,15 +40,16 @@ class Game
     private $comment;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Console::class, mappedBy="games")
-     */
-    private $consoles;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="games")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Console::class, inversedBy="games")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $consoles;
 
     public function __construct()
     {
@@ -108,33 +109,6 @@ class Game
         return $this;
     }
 
-    /**
-     * @return Collection<int, Console>
-     */
-    public function getConsoles(): Collection
-    {
-        return $this->consoles;
-    }
-
-    public function addConsole(Console $console): self
-    {
-        if (!$this->consoles->contains($console)) {
-            $this->consoles[] = $console;
-            $console->addGame($this);
-        }
-
-        return $this;
-    }
-
-    public function removeConsole(Console $console): self
-    {
-        if ($this->consoles->removeElement($console)) {
-            $console->removeGame($this);
-        }
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -143,6 +117,18 @@ class Game
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getConsoles(): ?Console
+    {
+        return $this->consoles;
+    }
+
+    public function setConsoles(?Console $consoles): self
+    {
+        $this->consoles = $consoles;
 
         return $this;
     }
