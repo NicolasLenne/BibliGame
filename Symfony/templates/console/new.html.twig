@@ -1,11 +1,13 @@
 {% extends 'member.html.twig' %}
 
-{% block title %}New Console{% endblock %}
+{% block title %}Nouvelle console{% endblock %}
 
 {% block body %}
-    <h1>Create new Console</h1>
+    <h3 class="title is-3 has-text-centered">Nouvelle console</h3>
 
-    {{ include('console/_form.html.twig') }}
+    <div>
+            {{ include('console/_form.html.twig') }}
+    </div>
 
     <a href="{{ path('app_console_index') }}">back to list</a>
 {% endblock %}
