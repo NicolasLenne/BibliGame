@@ -50,11 +50,6 @@ class Console
      */
     private $games;
 
-    public function __construct()
-    {
-        $this->games = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;

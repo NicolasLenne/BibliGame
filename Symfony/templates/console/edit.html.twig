@@ -12,7 +12,7 @@
     </div>
     <div class="mt-4">
         {% if console.id %}
-        <form method="post" action="{{ path('app_console_delete', {'id': console.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer cette console de votre liste ?');">
+        <form method="post" action="{{ path('app_console_delete', {'id': console.id}) }}" onsubmit="return confirm('Attention ! En supprimant cette console les jeux associés seront égallement supprimés. Confirmez cette action ?');">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ console.id) }}">
             <button class="button is-danger is-rounded">Supprimer</button>
         </form>
