@@ -9,3 +9,16 @@ header .title {
 header .subtitle {
     color: whitesmoke;
 }
+
+.card-show:hover {
+    background-color: hsl(171, 100%, 41%);
+}
+
+.card-edit:hover {
+    background-color: hsl(204, 86%, 53%);
+}
+
+.card-edit:hover, .card-show:hover {
+    font-weight: bold;
+    color: white;
+}

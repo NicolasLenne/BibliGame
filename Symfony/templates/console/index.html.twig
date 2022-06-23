@@ -5,7 +5,9 @@
 {% block body %}
 <h3 class="title is-3 has-text-centered">Ma liste de consoles</h3>
 
-<a href="{{ path('app_console_new') }}" class="button is-primary is-rounded mt-4 mb-6 ml-2">Ajouter une console</a>
+<div class="has-text-centered">
+    <a href="{{ path('app_console_new') }}" class="button is-primary is-rounded mt-4 mb-6">Ajouter une console</a>
+</div>
 
 <div class="columns">
     {% for console in consoles %}
@@ -33,8 +35,8 @@
                 </div>
             </div>
             <footer class="card-footer">
-                <a href="{{ path('app_console_show', {'id': console.id}) }}" class="card-footer-item">Afficher</a>
-                <a href="{{ path('app_console_edit', {'id': console.id}) }}" class="card-footer-item">Modifier</a>
+                <a href="{{ path('app_console_show', {'id': console.id}) }}" class="card-footer-item card-show">Afficher</a>
+                <a href="{{ path('app_console_edit', {'id': console.id}) }}" class="card-footer-item card-edit">Modifier</a>
             </footer>
         </div>
     </div>
