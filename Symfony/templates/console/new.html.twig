@@ -5,9 +5,11 @@
 {% block body %}
     <h3 class="title is-3 has-text-centered">Nouvelle console</h3>
 
-    <div>
+    <div class="columns px-2">
+        <div class="column is-half is-offset-one-quarter">
             {{ include('console/_form.html.twig') }}
+        </div>
     </div>
 
-    <a href="{{ path('app_console_index') }}">back to list</a>
+    
 {% endblock %}

@@ -37,6 +37,9 @@ class ConsoleType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Console::class,
+            'attr' => [
+                'novalidate' => 'novalidate',
+            ]
         ]);
     }
 }

@@ -7,8 +7,8 @@
     </div>
     <div class="field">
         <div class="control">
-            <label class="checkbox">
-                {{ form_row(form.isLoose)}} En loose ?
+            <label class="checkbox label"> Console en loose ? (sans carton d'origine)
+                {{ form_row(form.isLoose)}}
             </label>
         </div>
     </div>
@@ -25,5 +25,12 @@
         </div>
     </div>
     {{ form_widget(form) }}
-    <button class="button is-info is-rounded">{{ button_label|default('Sauvegarder') }}</button>
+    <button class="button is-primary is-rounded">{{ button_label|default('Sauvegarder') }}</button>
+    <a class="button is-info is-rounded" href="{{ path('app_console_index') }}">Annuler</a>
+    {% if console.id %}
+    <form method="post" action="{{ path('app_console_delete', {'id': console.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ console.id) }}">
+        <button class="button is-danger is-rounded">Delete</button>
+    </form>
+    {% endif %}
 {{ form_end(form) }}
