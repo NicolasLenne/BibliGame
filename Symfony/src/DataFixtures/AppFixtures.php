@@ -28,7 +28,6 @@ class AppFixtures extends Fixture
         $this->connection->executeQuery('SET foreign_key_checks = 0');
         // On tronque
         $this->connection->executeQuery('TRUNCATE TABLE console');
-        $this->connection->executeQuery('TRUNCATE TABLE console_game');
         $this->connection->executeQuery('TRUNCATE TABLE game');
         $this->connection->executeQuery('TRUNCATE TABLE user');
     }
@@ -71,10 +70,10 @@ class AppFixtures extends Fixture
 
         $pictureConsoles = [
             'https://upload.wikimedia.org/wikipedia/commons/8/82/Nintendo_64.jpg',
-            '',
-            'https://static.wikia.nocookie.net/mario/images/7/71/NS_Handheld_Mode.png/revision/latest?cb=20200525112151',
+            null,
+            'https://static.wikia.nocookie.net/mario/images/7/71/NS_Handheld_Mode.png',
             'https://upload.wikimedia.org/wikipedia/commons/9/98/Master_System_II.jpg',
-            ''
+            null
         ];
 
         for ($consoleCount=0; $consoleCount < 5; $consoleCount++) { 
