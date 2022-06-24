@@ -1,9 +1,50 @@
 {% extends 'member.html.twig' %}
 
-{% block title %}Game index{% endblock %}
+{% block title %}Ma liste de jeux{% endblock %}
 
 {% block body %}
-    <h1>Game index</h1>
+    <h3 class="title is-3 has-text-centered">Ma liste de jeux</h3>
+
+    <div class="has-text-centered">
+        <a href="{{ path('app_game_new') }}" class="button is-primary is-rounded mt-4 mb-6">Ajouter un jeu</a>
+    </div>
+
+    <div class="columns">
+        {% for game in games %}
+        <div class="column is-one-quarter">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        {% if game.photo is not null %}
+                        <img src="{{ game.photo }}" alt="" srcset="">
+                        {% else %}
+                        <img src="{{ asset('assets/img/no-pictures.svg') }}" alt="Placeholder image">
+                        {% endif %}
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">{{ game.name }}</p>
+                            <p class="subtitle is-6">{{ game.isLoose ? 'En loose' : 'Avec boîte d\'origine' }}</p>
+                        </div>
+                    </div>
+    
+                    <div class="content">
+                        {{ game.comment|slice(0, 180)|raw }}...
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="{{ path('app_game_show', {'id': game.id}) }}" class="card-footer-item card-show">Afficher</a>
+                    <a href="{{ path('app_game_edit', {'id': game.id}) }}" class="card-footer-item card-edit">Modifier</a>
+                </footer>
+            </div>
+        </div>
+        {% else %}
+        <p>Vous n'avez aucun jeux pour le moment.</p>
+        {% endfor %}
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -35,6 +76,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_game_new') }}">Create new</a>
 {% endblock %}

@@ -3,9 +3,11 @@
 {% block title %}New Game{% endblock %}
 
 {% block body %}
-    <h1>Create new Game</h1>
+    <h3 class="title is-3 has-text-centered">Nouveau jeu</h3>
 
-    {{ include('game/_form.html.twig') }}
-
-    <a href="{{ path('app_game_index') }}">back to list</a>
+    <div class="columns px-2">
+        <div class="column is-half is-offset-one-quarter">
+            {{ include('game/_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}

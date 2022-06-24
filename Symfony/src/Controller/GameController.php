@@ -21,7 +21,7 @@ class GameController extends AbstractController
     public function index(GameRepository $gameRepository): Response
     {
         return $this->render('game/index.html.twig', [
-            'games' => $gameRepository->findAll(),
+            'games' => $gameRepository->findBy(['user' => $this->getUser()]),
         ]);
     }
 
@@ -36,7 +36,6 @@ class GameController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $game->setUser($this->getUser());
-            dd($game); //! A retirer
             $gameRepository->add($game, true);
 
             return $this->redirectToRoute('app_game_index', [], Response::HTTP_SEE_OTHER);
