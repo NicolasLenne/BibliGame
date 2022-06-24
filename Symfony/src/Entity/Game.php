@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\GameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=GameRepository::class)
@@ -20,6 +21,7 @@ class Game
 
     /**
      * @ORM\Column(type="string", length=180)
+     * @Assert\NotBlank
      */
     private $name;
 

@@ -44,36 +44,4 @@
         <p>Vous n'avez aucun jeux pour le moment.</p>
         {% endfor %}
     </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>IsLoose</th>
-                <th>Photo</th>
-                <th>Comment</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for game in games %}
-            <tr>
-                <td>{{ game.id }}</td>
-                <td>{{ game.name }}</td>
-                <td>{{ game.isLoose ? 'Yes' : 'No' }}</td>
-                <td>{{ game.photo }}</td>
-                <td>{{ game.comment }}</td>
-                <td>
-                    <a href="{{ path('app_game_show', {'id': game.id}) }}">show</a>
-                    <a href="{{ path('app_game_edit', {'id': game.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 {% endblock %}

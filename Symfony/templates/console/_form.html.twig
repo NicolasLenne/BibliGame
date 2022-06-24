@@ -2,27 +2,31 @@
     <div class="field">
         <label class="label">Nom de la console</label>
         <div class="control">
-            {{ form_row(form.name)}}
+            {{ form_widget(form.name)}}
         </div>
+        <div class="help is-danger">{{ form_errors(form.name) }}</div>
     </div>
     <div class="field">
         <div class="control">
             <label class="checkbox label"> Console en loose ? (sans carton d'origine)
-                {{ form_row(form.isLoose)}}
+                {{ form_widget(form.isLoose)}}
             </label>
         </div>
+        <div class="help is-danger">{{ form_errors(form.isLoose) }}</div>
     </div>
     <div class="field">
         <label class="label">Photo</label>
         <div class="control">
-            {{ form_row(form.photo)}}
+            {{ form_widget(form.photo)}}
         </div>
+        <div class="help is-danger">{{ form_errors(form.photo) }}</div>
     </div>
     <div class="field">
         <label class="label">Commentaire</label>
         <div class="control">
-            {{ form_row(form.comment)}}
+            {{ form_widget(form.comment)}}
         </div>
+        <div class="help is-danger">{{ form_errors(form.comment) }}</div>
     </div>
     {{ form_widget(form) }}
     <button class="button is-primary is-rounded">{{ button_label|default('Sauvegarder') }}</button>
