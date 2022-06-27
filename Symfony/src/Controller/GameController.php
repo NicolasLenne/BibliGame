@@ -52,6 +52,7 @@ class GameController extends AbstractController
      */
     public function show(Game $game): Response
     {
+        $this->denyAccessUnlessGranted('GAME_VIEW', $game);
         return $this->render('game/show.html.twig', [
             'game' => $game,
         ]);
@@ -62,6 +63,8 @@ class GameController extends AbstractController
      */
     public function edit(Request $request, Game $game, GameRepository $gameRepository): Response
     {
+        $this->denyAccessUnlessGranted('GAME_VIEW', $game);
+        
         $form = $this->createForm(GameType::class, $game);
         $form->handleRequest($request);
 
