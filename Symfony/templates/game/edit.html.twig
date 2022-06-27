@@ -1,13 +1,22 @@
 {% extends 'member.html.twig' %}
 
-{% block title %}Edit Game{% endblock %}
+{% block title %}Modifier le jeu : {{ game.name }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Game</h1>
+<h3 class="title is-3 has-text-centered">Modifier le jeu : {{ game.name }}</h3>
 
-    {{ include('game/_form.html.twig', {'button_label': 'Update'}) }}
+<div class="is-flex is-flex-direction-column px-2 is-flex-mobile">
+    <div>
+    {{ include('game/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('app_game_index') }}">back to list</a>
-
-    {{ include('game/_delete_form.html.twig') }}
+    </div>
+    <div class="mt-4">
+        {% if game.id %}
+        <form method="post" action="{{ path('app_game_delete', {'id': game.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce jeu ?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ game.id) }}">
+            <button class="button is-danger is-rounded">Supprimer</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
