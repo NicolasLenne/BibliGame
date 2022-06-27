@@ -86,6 +86,8 @@ class ConsoleController extends AbstractController
      */
     public function delete(Request $request, Console $console, ConsoleRepository $consoleRepository): Response
     {
+        $this->denyAccessUnlessGranted('CONSOLE_EDIT', $console);
+        
         if ($this->isCsrfTokenValid('delete'.$console->getId(), $request->request->get('_token'))) {
             $consoleRepository->remove($console, true);
         }
