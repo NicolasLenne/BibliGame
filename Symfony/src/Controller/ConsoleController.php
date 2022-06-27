@@ -52,6 +52,8 @@ class ConsoleController extends AbstractController
      */
     public function show(Console $console): Response
     {
+        $this->denyAccessUnlessGranted('CONSOLE_VIEW', $console);
+
         return $this->render('console/show.html.twig', [
             'console' => $console,
         ]);
@@ -62,6 +64,8 @@ class ConsoleController extends AbstractController
      */
     public function edit(Request $request, Console $console, ConsoleRepository $consoleRepository): Response
     {
+        $this->denyAccessUnlessGranted('CONSOLE_EDIT', $console);
+
         $form = $this->createForm(ConsoleType::class, $console);
         $form->handleRequest($request);
 

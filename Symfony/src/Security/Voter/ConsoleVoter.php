@@ -8,8 +8,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class ConsoleVoter extends Voter
 {
-    public const EDIT = 'POST_EDIT';
-    public const VIEW = 'POST_VIEW';
+    public const EDIT = 'CONSOLE_EDIT';
+    public const VIEW = 'CONSOLE_VIEW';
 
     protected function supports(string $attribute, $subject): bool
     {
@@ -30,12 +30,10 @@ class ConsoleVoter extends Voter
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case self::EDIT:
-                // logic to determine if the user can EDIT
-                // return true or false
+                return $user === $subject->getUser();
                 break;
             case self::VIEW:
-                // logic to determine if the user can VIEW
-                // return true or false
+                return $user === $subject->getUser();
                 break;
         }
 
