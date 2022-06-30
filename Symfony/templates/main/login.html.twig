@@ -26,8 +26,8 @@
                 <input class="input" type="password" placeholder="Mot de passe" id="password" name="_password">
             </div>
         </div>
-        {# If you want to control the URL the user is redirected to on success
-        <input type="hidden" name="_target_path" value="/account" /> #}
+        {# If you want to control the URL the user is redirected to on success #}
+        <input type="hidden" name="_target_path" value="/myaccount" />
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <div class="field mt-4">
             <p class="control">
