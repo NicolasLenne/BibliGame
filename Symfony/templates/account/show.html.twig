@@ -1,0 +1,58 @@
+{% extends 'member.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+    <h3 class="title is-3 has-text-centered">Mon compte</h3>
+
+    <div class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <img src="{{ user.picture ? user.picture : 'https://bulma.io/images/placeholders/128x128.png' }}" alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>Mon nom : </strong>{{ user.lastname }}
+              </p>
+              <p>
+                <strong>Mon prénom : </strong>{{ user.firstname }}
+              </p>
+              <p>
+                <strong>Mon adresse mail : </strong>{{ user.email }}
+              </p>
+              <p>
+                <strong>Date de création de mon compte : </strong>{{ user.createdAt ? user.createdAt|date('Y-m-d') : '' }}
+              </p>
+            </div>
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <a class="level-item" aria-label="reply">
+                  <span class="icon is-small">
+                    <i class="fas fa-reply" aria-hidden="true"></i>
+                  </span>
+                </a>
+                <a class="level-item" aria-label="retweet">
+                  <span class="icon is-small">
+                    <i class="fas fa-retweet" aria-hidden="true"></i>
+                  </span>
+                </a>
+                <a class="level-item" aria-label="like">
+                  <span class="icon is-small">
+                    <i class="fas fa-heart" aria-hidden="true"></i>
+                  </span>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </article>
+      </div>
+
+
+
+    <a href="{{ path('app_account_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('account/_delete_form.html.twig') }}
+{% endblock %}
