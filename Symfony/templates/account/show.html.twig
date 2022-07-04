@@ -49,11 +49,8 @@
             </nav>
           </div>
         </article>
+        <footer class="card-footer">
+          <a href="{{ path('app_account_edit') }}" class="card-footer-item card-edit">Modifier</a>
+      </footer>
       </div>
-
-
-
-    <a href="{{ path('app_account_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('account/_delete_form.html.twig') }}
 {% endblock %}

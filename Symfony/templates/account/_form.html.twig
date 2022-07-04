@@ -1,4 +1,26 @@
 {{ form_start(form) }}
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+            {{ form_widget(form.email)}}
+        </div>
+        <div class="help is-danger">{{ form_errors(form.email) }}</div>
+    </div>
+    <div class="field">
+        <label class="label">Nom</label>
+        <div class="control">
+            {{ form_widget(form.lastname)}}
+        </div>
+        <div class="help is-danger">{{ form_errors(form.lastname) }}</div>
+    </div>
+    <div class="field">
+        <label class="label">Prénom</label>
+        <div class="control">
+            {{ form_widget(form.firstname)}}
+        </div>
+        <div class="help is-danger">{{ form_errors(form.firstname) }}</div>
+    </div>
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="button is-primary is-rounded">{{ button_label|default('Save') }}</button>
+    <a class="button is-info is-rounded" href="{{ path('app_account_show') }}">Annuler</a>
 {{ form_end(form) }}
