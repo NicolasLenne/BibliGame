@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\ConsoleRepository;
+use App\Repository\GameRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,10 +20,15 @@ class AccountController extends AbstractController
     /**
      * @Route("/", name="app_account_show", methods={"GET"})
      */
-    public function show(): Response
+    public function show(ConsoleRepository $consoleRepository, GameRepository $gameRepository): Response
     {
+        $nbConsole = count($consoleRepository->findBy(['user' => $this->getUser()]));
+        $nbGame = count($gameRepository->findBy(['user' => $this->getUser()]));
+
         return $this->render('account/show.html.twig', [
             'user' => $this->getUser(),
+            'nbConsole' => $nbConsole,
+            'nbGame' => $nbGame,
         ]);
     }
 
