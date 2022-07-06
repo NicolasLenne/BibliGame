@@ -15,10 +15,12 @@ De base privé, mais finalement je vais opter pour le rendre public. Donc prévo
 
 ## A faire :
 
-- [ ] Rédaction des User stories
+- [x] Rédaction des User stories
 - [ ] Mise en place du MCD et dictionnaire de données
 - [x] Trouver un nom plus sympathique :)
-- [ ] Faire un wireframe ou directement une maquette
-- [ ] Faire une intégration html simple pour avoir une base (ex. header, menu, footer, contenu fictif)
+- [x] Faire un wireframe ou directement une maquette
+- [x] Faire une intégration html simple pour avoir une base (ex. header, menu, footer, contenu fictif)
 
 ### Commencement du projet courant juin
+
+Projet gérer via Trello (perso)
