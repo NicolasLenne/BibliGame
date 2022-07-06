@@ -69,9 +69,16 @@ class AccountController extends AbstractController
        
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form, 'good');
-            $password = $userPasswordHasherInterface->isPasswordValid($user, $form["password"]);
 
+            dd($request->request->all());
+            
+            $password = $userPasswordHasherInterface->isPasswordValid($user, $request->query->get("password"));
+
+            if($password){
+                dd('ok');
+            } else {
+                dd('not ok');
+            }
             // if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             //     $userRepository->remove($user, true);
             // }
