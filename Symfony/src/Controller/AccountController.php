@@ -4,13 +4,15 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\ConsoleRepository;
+use App\Form\AccountDeleteType;
 use App\Repository\GameRepository;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ConsoleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @Route("/myaccount")
@@ -55,14 +57,35 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/delete", name="app_account_delete", methods={"POST"})
+     * @Route("/delete", name="app_account_delete", methods={"GET", "POST"})
      */
-    public function delete(Request $request, User $user, UserRepository $userRepository): Response
+    public function delete(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user, true);
+        $user = $userRepository->find($this->getUser());
+
+        $form = $this->createForm(AccountDeleteType::class, $user);
+        $form->handleRequest($request);
+
+       
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dd($form, 'good');
+            $password = $userPasswordHasherInterface->isPasswordValid($user, $form["password"]);
+
+            // if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            //     $userRepository->remove($user, true);
+            // }
+
+            // return $this->redirectToRoute('app_account_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->redirectToRoute('app_account_index', [], Response::HTTP_SEE_OTHER);
+        if ($form->isSubmitted() && $form->isValid() === false){
+            dd($form, 'not good');
+
+        }
+        return $this->renderForm('account/delete.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
     }
 }
