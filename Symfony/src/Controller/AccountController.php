@@ -12,7 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -60,7 +62,7 @@ class AccountController extends AbstractController
     /**
      * @Route("/delete", name="app_account_delete", methods={"GET", "POST"})
      */
-    public function delete(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface, ValidatorInterface $validator): Response
+    public function delete(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface, TokenStorageInterface $tokenStorageInterface, SessionInterface $session): Response
     {
         $user = $userRepository->find($this->getUser());
 
@@ -77,6 +79,9 @@ class AccountController extends AbstractController
                 if ($checkPassword && $request->request->get('password') !== null) {
 
                     $userRepository->remove($user, true);
+
+                    $tokenStorageInterface->setToken(null);
+                    $session->invalidate();
 
                     return $this->redirectToRoute('main_home', [], Response::HTTP_SEE_OTHER);
                 }
