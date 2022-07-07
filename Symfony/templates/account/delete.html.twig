@@ -8,10 +8,17 @@
         <div>
         <p>Afin de pouvoir confirmer la suppression de votre compte, veuillez confirmer votre choix à l'aide de votre mot de passe :</p>
         
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
+        <form action="{{ path('app_account_delete') }}" method="post">
+        <div class="field">
+            <label class="label"></label>
+            <div class="control">
+                <input class="input" type="password" name="password" placeholder="Mot de passe">
+            </div>
+        </div>
+        <input type="hidden" name="token" value="{{ csrf_token('delete') }}"/>
         <button class="button is-danger is-rounded mt-4">Supprimer</button>
-        {{ form_end(form) }}
+        </form>
+        
         </div>
     </div>
 {% endblock %}

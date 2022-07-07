@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/myaccount")
@@ -59,40 +60,33 @@ class AccountController extends AbstractController
     /**
      * @Route("/delete", name="app_account_delete", methods={"GET", "POST"})
      */
-    public function delete(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
+    public function delete(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface, ValidatorInterface $validator): Response
     {
         $user = $userRepository->find($this->getUser());
 
-        $form = $this->createForm(AccountDeleteType::class, $user);
-        $form->handleRequest($request);
+        if($request->isMethod('POST')){
 
-       
+            $password = htmlspecialchars($request->request->get('password'));
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            $submittedToken = $request->request->get('token');
 
-            dd($request->request->all());
-            
-            $password = $userPasswordHasherInterface->isPasswordValid($user, $request->query->get("password"));
+            if ($this->isCsrfTokenValid('delete', $submittedToken)) {
 
-            if($password){
-                dd('ok');
-            } else {
-                dd('not ok');
+                $checkPassword = $userPasswordHasherInterface->isPasswordValid($this->getUser(), $password);
+
+                if ($checkPassword && $request->request->get('password') !== null) {
+
+                    $userRepository->remove($user, true);
+
+                    return $this->redirectToRoute('main_home', [], Response::HTTP_SEE_OTHER);
+                }
+                
             }
-            // if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            //     $userRepository->remove($user, true);
-            // }
-
-            // return $this->redirectToRoute('app_account_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        if ($form->isSubmitted() && $form->isValid() === false){
-            dd($form, 'not good');
 
         }
+
         return $this->renderForm('account/delete.html.twig', [
-            'user' => $user,
-            'form' => $form,
+            'user' => $user
         ]);
     }
 }
