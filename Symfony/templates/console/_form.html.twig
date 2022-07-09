@@ -32,3 +32,12 @@
     <button class="button is-primary is-rounded">{{ button_label|default('Sauvegarder') }}</button>
     <a class="button is-info is-rounded" href="{{ path('app_console_index') }}">Annuler</a>
 {{ form_end(form) }}
+<script>
+  const fileInput = document.querySelector('.file-input');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('.file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+</script>
