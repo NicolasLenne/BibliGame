@@ -20,7 +20,38 @@
         </div>
         <div class="help is-danger">{{ form_errors(form.firstname) }}</div>
     </div>
+    <div class="field">
+        <div class="file has-name">
+            <div class="control">
+                <label class="file-label">
+                {{ form_widget(form.picture)}}
+                <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Envoyez votre photo
+                    </span>
+                  </span>
+                  <span class="file-name">
+                    Aucune photo envoyé !
+                    
+                  </span>
+                </label>
+                <div class="help is-danger">{{ form_errors(form.picture) }}</div>
+            </div>
+        </div>
+    </div>
     {{ form_widget(form) }}
     <button class="button is-primary is-rounded">{{ button_label|default('Save') }}</button>
     <a class="button is-info is-rounded" href="{{ path('app_account_show') }}">Annuler</a>
 {{ form_end(form) }}
+<script>
+  const fileInput = document.querySelector('.file-input');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('.file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+</script>

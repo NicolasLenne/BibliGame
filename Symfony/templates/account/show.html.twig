@@ -9,8 +9,12 @@
     <div class="box">
         <article class="media">
           <div class="media-left">
-            <figure class="image is-64x64">
-              <img src="{{ user.picture ? user.picture : 'https://bulma.io/images/placeholders/128x128.png' }}" alt="Image">
+            <figure class="image">
+              {% if user.picture is not null %}
+              <img src="{{ asset('uploads/images/user/' ~ user.picture) }}" alt="" height="128px" width="128px">
+              {% else %}
+              <img src="{{ asset('assets/img/no-pictures.svg') }}" alt="Placeholder image" height="128px" width="128px">
+              {% endif %}
             </figure>
           </div>
           <div class="media-content">
