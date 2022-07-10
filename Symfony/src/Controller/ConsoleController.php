@@ -38,8 +38,30 @@ class ConsoleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $consolePhoto = $form->get('photo')->getData();
 
+            //! Test en cours de redimentionnement
+            // Définition de la largeur et de la hauteur maximale
+            $width = 500;
+            $height = 500;
+
+            // Cacul des nouvelles dimensions
+            list($width_orig, $height_orig) = getimagesize($consolePhoto);
+
+            $ratio_orig = $width_orig/$height_orig;
+
+            if ($width/$height > $ratio_orig) {
+            $width = $height*$ratio_orig;
+            } else {
+            $height = $width/$ratio_orig;
+            }
+            
+            // Redimensionnement
+            $image_p = imagecreatetruecolor($width, $height);
+            $image = imagecreatefromjpeg($consolePhoto);
+            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+            //! Fin test
+
             if ($consolePhoto) {
-                if(!$picturesManager->add($console, 'photo', $consolePhoto, 'photos_consoles_directory')){
+                if(!$picturesManager->add($console, 'photo', $image_p, 'photos_consoles_directory')){
                     // $this->addFlash('warning', 'Erreur durant le chargement de la photo');
                     return $this->redirectToRoute('app_game_index', [], Response::HTTP_INTERNAL_SERVER_ERROR);
                 }
