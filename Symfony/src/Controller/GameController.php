@@ -41,7 +41,7 @@ class GameController extends AbstractController
             if ($photoGame) {
                 if(!$picturesManager->add($game, 'photo', $photoGame, 'photos_games_directory')){
                     // $this->addFlash('warning', 'Erreur durant le chargement de la photo');
-                    return $this->redirectToRoute('app_game_index', [], Response::HTTP_METHOD_NOT_ALLOWED);
+                    return $this->redirectToRoute('app_game_index', [], Response::HTTP_INTERNAL_SERVER_ERROR);
                 }
             }
 
@@ -71,7 +71,7 @@ class GameController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_game_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Game $game, GameRepository $gameRepository): Response
+    public function edit(Request $request, Game $game, GameRepository $gameRepository, PicturesManager $picturesManager): Response
     {
         $this->denyAccessUnlessGranted('GAME_EDIT', $game);
 
@@ -79,6 +79,15 @@ class GameController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $photoGame = $form->get('photo')->getData();
+
+            if ($photoGame) {
+                if(!$picturesManager->add($game, 'photo', $photoGame, 'photos_games_directory')){
+                    // $this->addFlash('warning', 'Erreur durant le chargement de la photo');
+                    return $this->redirectToRoute('app_game_index', [], Response::HTTP_INTERNAL_SERVER_ERROR);
+                }
+            }
+
             $gameRepository->add($game, true);
 
             return $this->redirectToRoute('app_game_index', [], Response::HTTP_SEE_OTHER);
@@ -93,11 +102,15 @@ class GameController extends AbstractController
     /**
      * @Route("/{id}", name="app_game_delete", methods={"POST"})
      */
-    public function delete(Request $request, Game $game, GameRepository $gameRepository): Response
+    public function delete(Request $request, Game $game, GameRepository $gameRepository, PicturesManager $picturesManager): Response
     {
         $this->denyAccessUnlessGranted('GAME_EDIT', $game);
         
         if ($this->isCsrfTokenValid('delete'.$game->getId(), $request->request->get('_token'))) {
+            if($game->getPhoto() !== null){
+                $picturesManager->delete($game, 'photo', 'photos_games_directory');
+            }
+
             $gameRepository->remove($game, true);
         }
 
