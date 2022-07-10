@@ -9,7 +9,7 @@
     <div class="card-image">
         <figure class="image is-4by3">
             {% if game.photo is not null %}
-            <img src="{{ game.photo }}" alt="" srcset="">
+            <img src="{{ asset('uploads/photos/game/' ~ game.photo) }}" alt="" srcset="">
             {% else %}
             <img src="{{ asset('assets/img/no-pictures.svg') }}" alt="Placeholder image">
             {% endif %}
