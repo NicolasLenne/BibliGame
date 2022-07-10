@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Form\GameType;
 use App\Repository\GameRepository;
+use App\Service\PicturesManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +29,22 @@ class GameController extends AbstractController
     /**
      * @Route("/new", name="app_game_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, GameRepository $gameRepository): Response
+    public function new(Request $request, GameRepository $gameRepository, PicturesManager $picturesManager): Response
     {
         $game = new Game();
         $form = $this->createForm(GameType::class, $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $photoGame = $form->get('photo')->getData();
+
+            if ($photoGame) {
+                if(!$picturesManager->add($game, 'photo', $photoGame, 'photos_games_directory')){
+                    // $this->addFlash('warning', 'Erreur durant le chargement de la photo');
+                    return $this->redirectToRoute('app_game_index', [], Response::HTTP_METHOD_NOT_ALLOWED);
+                }
+            }
+
             $game->setUser($this->getUser());
             $gameRepository->add($game, true);
 

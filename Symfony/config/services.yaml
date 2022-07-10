@@ -4,7 +4,10 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    # Directories for images : 
+    photos_consoles_directory: '%kernel.project_dir%/public/uploads/photos/console'
+    photos_games_directory: '%kernel.project_dir%/public/uploads/photos/game'
+    images_users_directory: '%kernel.project_dir%/public/uploads/images/user'
 services:
     # default configuration for services in *this* file
     _defaults:
