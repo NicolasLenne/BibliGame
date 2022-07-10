@@ -36,10 +36,10 @@ class GameController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $photoGame = $form->get('photo')->getData();
+            $gamePhoto = $form->get('photo')->getData();
 
-            if ($photoGame) {
-                if(!$picturesManager->add($game, 'photo', $photoGame, 'photos_games_directory')){
+            if ($gamePhoto) {
+                if(!$picturesManager->add($game, 'photo', $gamePhoto, 'photos_games_directory')){
                     // $this->addFlash('warning', 'Erreur durant le chargement de la photo');
                     return $this->redirectToRoute('app_game_index', [], Response::HTTP_INTERNAL_SERVER_ERROR);
                 }
@@ -79,10 +79,10 @@ class GameController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $photoGame = $form->get('photo')->getData();
+            $gamePhoto = $form->get('photo')->getData();
 
-            if ($photoGame) {
-                if(!$picturesManager->add($game, 'photo', $photoGame, 'photos_games_directory')){
+            if ($gamePhoto) {
+                if(!$picturesManager->add($game, 'photo', $gamePhoto, 'photos_games_directory')){
                     // $this->addFlash('warning', 'Erreur durant le chargement de la photo');
                     return $this->redirectToRoute('app_game_index', [], Response::HTTP_INTERNAL_SERVER_ERROR);
                 }

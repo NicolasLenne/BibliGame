@@ -36,10 +36,10 @@ class ConsoleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $photoConsole = $form->get('photo')->getData();
+            $consolePhoto = $form->get('photo')->getData();
 
-            if ($photoConsole) {
-                if(!$picturesManager->add($console, 'photo', $photoConsole, 'photos_consoles_directory')){
+            if ($consolePhoto) {
+                if(!$picturesManager->add($console, 'photo', $consolePhoto, 'photos_consoles_directory')){
                     // $this->addFlash('warning', 'Erreur durant le chargement de la photo');
                     return $this->redirectToRoute('app_game_index', [], Response::HTTP_INTERNAL_SERVER_ERROR);
                 }
@@ -80,10 +80,10 @@ class ConsoleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $photoConsole = $form->get('photo')->getData();
+            $consolePhoto = $form->get('photo')->getData();
 
-            if ($photoConsole) {
-                if(!$picturesManager->add($console, 'photo', $photoConsole, 'photos_consoles_directory')){
+            if ($consolePhoto) {
+                if(!$picturesManager->add($console, 'photo', $consolePhoto, 'photos_consoles_directory')){
                     // $this->addFlash('warning', 'Erreur durant le chargement de la photo');
                     return $this->redirectToRoute('app_game_index', [], Response::HTTP_INTERNAL_SERVER_ERROR);
                 }
