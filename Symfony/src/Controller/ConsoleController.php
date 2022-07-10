@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Console;
 use App\Form\ConsoleType;
+use App\Service\PicturesManager;
 use App\Repository\ConsoleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/console")
@@ -28,13 +29,22 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/new", name="app_console_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, ConsoleRepository $consoleRepository): Response
+    public function new(Request $request, ConsoleRepository $consoleRepository, PicturesManager $picturesManager): Response
     {
         $console = new Console();
         $form = $this->createForm(ConsoleType::class, $console);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $photoConsole = $form->get('photo')->getData();
+
+            if ($photoConsole) {
+                if(!$picturesManager->add($console, 'photo', $photoConsole, 'photos_consoles_directory')){
+                    // $this->addFlash('warning', 'Erreur durant le chargement de la photo');
+                    return $this->redirectToRoute('app_game_index', [], Response::HTTP_INTERNAL_SERVER_ERROR);
+                }
+            }
+
             $console->setUser($this->getUser());
             $consoleRepository->add($console, true);
 
@@ -62,7 +72,7 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_console_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Console $console, ConsoleRepository $consoleRepository): Response
+    public function edit(Request $request, Console $console, ConsoleRepository $consoleRepository, PicturesManager $picturesManager): Response
     {
         $this->denyAccessUnlessGranted('CONSOLE_EDIT', $console);
 
@@ -70,6 +80,15 @@ class ConsoleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $photoConsole = $form->get('photo')->getData();
+
+            if ($photoConsole) {
+                if(!$picturesManager->add($console, 'photo', $photoConsole, 'photos_consoles_directory')){
+                    // $this->addFlash('warning', 'Erreur durant le chargement de la photo');
+                    return $this->redirectToRoute('app_game_index', [], Response::HTTP_INTERNAL_SERVER_ERROR);
+                }
+            }
+
             $consoleRepository->add($console, true);
 
             return $this->redirectToRoute('app_console_index', [], Response::HTTP_SEE_OTHER);
@@ -84,11 +103,15 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/{id}", name="app_console_delete", methods={"POST"})
      */
-    public function delete(Request $request, Console $console, ConsoleRepository $consoleRepository): Response
+    public function delete(Request $request, Console $console, ConsoleRepository $consoleRepository, PicturesManager $picturesManager): Response
     {
         $this->denyAccessUnlessGranted('CONSOLE_EDIT', $console);
         
         if ($this->isCsrfTokenValid('delete'.$console->getId(), $request->request->get('_token'))) {
+            if($console->getPhoto() !== null){
+                $picturesManager->delete($console, 'photo', 'photos_consoles_directory');
+            }
+
             $consoleRepository->remove($console, true);
         }
 
