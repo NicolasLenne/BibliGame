@@ -58,7 +58,6 @@ class PicturesManager
      * @return void
      */
     public function add($entity, $propertyNamePicture, $imageFile, $directory){
-        // $imageFile = $this->imageResize($imageFile);
         // Set a variable method to call with $propertyNamePicture
         $getImage = "get".$propertyNamePicture;
         $setImage = "set".$propertyNamePicture;
@@ -84,20 +83,33 @@ class PicturesManager
         
         $entity->$setImage($newFilename);
 
+        $this->imageResize($entity, $propertyNamePicture, $directory);
+
         return $entity;
     }
 
     /**
      * Picture resize
+     * 
+     * @param object $entity The entity to work
+     * @param string $propertyNamePicture Name property of the entity containing the image
+     * @param string $directory The name of directory contained in the parameter in service.yaml or put directly your directory
+     * 
      */
-    public function imageResize($image){
-        //! Test en cours de redimentionnement
+    public function imageResize($entity, $propertyNamePicture, $directory){
+        // Set a variable method to call with $propertyNamePicture
+        $getImage = "get".$propertyNamePicture;
+        $setImage = "set".$propertyNamePicture;
+
+        // We get the path with filesystem method and the variable method
+        $path = $this->params->get($directory).'/'.$entity->$getImage();
+
         // Définition de la largeur et de la hauteur maximale
         $width = 500;
         $height = 500;
 
         // Cacul des nouvelles dimensions
-        list($width_orig, $height_orig) = getimagesize($image);
+        list($width_orig, $height_orig) = getimagesize($path);
 
         $ratio_orig = $width_orig/$height_orig;
 
@@ -110,9 +122,9 @@ class PicturesManager
         // Redimensionnement
         
         $image_p = imagecreatetruecolor($width, $height);
-        $image = imagecreatefromjpeg($image);
+        $image = imagecreatefromjpeg($path);
         imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
-        //! Fin test
-        return $image_p;
+
+        imagejpeg($image_p, $path, 75);
     }
 }

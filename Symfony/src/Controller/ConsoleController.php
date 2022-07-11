@@ -47,7 +47,7 @@ class ConsoleController extends AbstractController
 
             $console->setUser($this->getUser());
             $consoleRepository->add($console, true);
-
+            
             return $this->redirectToRoute('app_console_index', [], Response::HTTP_SEE_OTHER);
         }
 
