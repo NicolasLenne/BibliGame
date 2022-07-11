@@ -110,7 +110,6 @@ class PicturesManager
         // Redimensionnement
         
         $image_p = imagecreatetruecolor($width, $height);
-        imagejpeg($image_p, 'console.jpg');
         $image = imagecreatefromjpeg($image);
         imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
         //! Fin test
