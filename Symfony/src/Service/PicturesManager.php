@@ -58,10 +58,11 @@ class PicturesManager
      * @return void
      */
     public function add($entity, $propertyNamePicture, $imageFile, $directory){
+        // $imageFile = $this->imageResize($imageFile);
         // Set a variable method to call with $propertyNamePicture
         $getImage = "get".$propertyNamePicture;
         $setImage = "set".$propertyNamePicture;
-
+        
         // Check if it's an image replacement 
         if($entity->getId() !== null && $entity->$getImage() !== null){
             $this->delete($entity, $propertyNamePicture, $directory);
@@ -71,6 +72,7 @@ class PicturesManager
         $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slugger->slug($originalFilename);
         $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
         try {
             $imageFile->move(
                 $this->params->get($directory),
@@ -79,10 +81,39 @@ class PicturesManager
         } catch (FileException $e) {
             return false;
         }
-
+        
         $entity->$setImage($newFilename);
 
         return $entity;
     }
 
+    /**
+     * Picture resize
+     */
+    public function imageResize($image){
+        //! Test en cours de redimentionnement
+        // Définition de la largeur et de la hauteur maximale
+        $width = 500;
+        $height = 500;
+
+        // Cacul des nouvelles dimensions
+        list($width_orig, $height_orig) = getimagesize($image);
+
+        $ratio_orig = $width_orig/$height_orig;
+
+        if ($width/$height > $ratio_orig) {
+        $width = $height*$ratio_orig;
+        } else {
+        $height = $width/$ratio_orig;
+        }
+        
+        // Redimensionnement
+        
+        $image_p = imagecreatetruecolor($width, $height);
+        imagejpeg($image_p, 'console.jpg');
+        $image = imagecreatefromjpeg($image);
+        imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+        //! Fin test
+        return $image_p;
+    }
 }
