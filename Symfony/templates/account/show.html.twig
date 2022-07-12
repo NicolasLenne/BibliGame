@@ -8,9 +8,9 @@
     <div>
       <figure class="image is-128x128 mx-auto">
         {% if user.picture is not null %}
-        <img src="{{ asset('uploads/images/user/' ~ user.picture) }}" alt="" height="128px" width="128px" class="is-rounded">
+        <img src="{{ asset('uploads/images/user/' ~ user.picture) }}" alt="" class="is-rounded profil-picture">
         {% else %}
-        <img src="{{ asset('assets/img/user-no-picture.svg') }}" alt="Placeholder image" height="128px" width="128px" class="is-rounded">
+        <img src="{{ asset('assets/img/user-no-picture.svg') }}" alt="">
         {% endif %}
       </figure>
       <h4 class="title is-4 has-text-centered my-2">Bonjour {{ user.firstname }}</h4>
@@ -18,7 +18,11 @@
     </div>
 
     <div class="box">
-      <p class="my-2 has-text-weight-bold	">Informations de votre compte</p>
+      <div class="is-flex is-justify-content-space-between my-2 is-flex-wrap-wrap">
+        <p class="has-text-weight-bold	">Informations de votre compte</p>
+        <a href="{{ path('app_account_edit') }}">Modifier mes informations</a>
+      </div>
+      <hr>
         <article class="media">
           <div class="media-content">
             <div class="content">
@@ -34,22 +38,29 @@
             </div>
           </div>
         </article>
-        <footer class="card-footer">
-          <a href="{{ path('app_account_edit') }}" class="card-footer-item card-edit">Modifier</a>
-      </footer>
       </div>
-      <h5 class="title is-5 mx-2">Résumé consoles et jeux :</h5>
-      <div class="field is-grouped is-grouped-multiline mx-2">
-        <div class="control">
-          <div class="tags has-addons">
-            <span class="tag is-dark"><a class="has-text-white" href="{{ path('app_console_index') }}">Nombre de console</a></span>
-            <span class="tag is-info">{{ nbConsole }}</span>
+      <h5 class="title is-5 mx-4 has-text-centered">Résumé consoles et jeux :</h5>
+      <div class="is-flex is-justify-content-space-around my-2 is-flex-wrap-wrap">
+        <div class="is-flex is-flex-direction-column">
+          <figure class="image is-128x128 mx-auto">
+            <img src="{{ asset('assets/img/game-console.svg') }}" alt="">
+          </figure>
+          <div class="control my-4 mx-auto">
+            <div class="tags has-addons">
+              <span class="tag is-dark"><a class="has-text-white" href="{{ path('app_console_index') }}">Nombre de console</a></span>
+              <span class="tag is-info">{{ nbConsole }}</span>
+            </div>
           </div>
         </div>
-        <div class="control">
-          <div class="tags has-addons">
-            <span class="tag is-dark"><a class="has-text-white" href="{{ path('app_game_index') }}">Nombre de jeux</a></span>
-            <span class="tag is-info">{{ nbGame }}</span>
+        <div class="is-flex is-flex-direction-column">
+          <figure class="image is-128x128 mx-auto">
+            <img src="{{ asset('assets/img/game-cartridge.svg') }}" alt="">
+          </figure>
+          <div class="control my-4 mx-auto">
+            <div class="tags has-addons">
+              <span class="tag is-dark"><a class="has-text-white" href="{{ path('app_game_index') }}">Nombre de jeux</a></span>
+              <span class="tag is-info">{{ nbGame }}</span>
+            </div>
           </div>
         </div>
       </div>

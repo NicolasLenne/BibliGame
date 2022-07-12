@@ -22,3 +22,9 @@ header .subtitle {
     font-weight: bold;
     color: white;
 }
+
+.profil-picture {
+    height: 128px! important;
+    width: 128px! important;
+    object-fit: cover! important;
+}
