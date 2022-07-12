@@ -4,19 +4,22 @@
 
 {% block body %}
     <h3 class="title is-3 has-text-centered">Mon compte</h3>
-    <h4 class="title is-4">Bonjour {{ user.firstname }}</h4>
+    
+    <div>
+      <figure class="image is-128x128 mx-auto">
+        {% if user.picture is not null %}
+        <img src="{{ asset('uploads/images/user/' ~ user.picture) }}" alt="" height="128px" width="128px" class="is-rounded">
+        {% else %}
+        <img src="{{ asset('assets/img/user-no-picture.svg') }}" alt="Placeholder image" height="128px" width="128px" class="is-rounded">
+        {% endif %}
+      </figure>
+      <h4 class="title is-4 has-text-centered my-2">Bonjour {{ user.firstname }}</h4>
+      <p class="has-text-centered is-size-7 my-2">Vous êtes membre depuis : {{ user.createdAt ? user.createdAt|date('Y-m-d') : '' }}</p>
+    </div>
 
     <div class="box">
+      <p class="my-2 has-text-weight-bold	">Informations de votre compte</p>
         <article class="media">
-          <div class="media-left">
-            <figure class="image">
-              {% if user.picture is not null %}
-              <img src="{{ asset('uploads/images/user/' ~ user.picture) }}" alt="" height="128px" width="128px">
-              {% else %}
-              <img src="{{ asset('assets/img/no-pictures.svg') }}" alt="Placeholder image" height="128px" width="128px">
-              {% endif %}
-            </figure>
-          </div>
           <div class="media-content">
             <div class="content">
               <p>
@@ -27,9 +30,6 @@
               </p>
               <p>
                 <strong>Mon adresse mail : </strong>{{ user.email }}
-              </p>
-              <p>
-                <strong>Date de création de mon compte : </strong>{{ user.createdAt ? user.createdAt|date('Y-m-d') : '' }}
               </p>
             </div>
           </div>
