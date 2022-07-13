@@ -23,8 +23,20 @@ header .subtitle {
     color: white;
 }
 
-.profil-picture {
+.profil--picture {
     height: 128px! important;
     width: 128px! important;
     object-fit: cover! important;
 }
+
+.card--picture {
+    object-fit: cover! important;
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) { 
+    .card--show .card-image {
+        width: 100%;
+    }
+    
+ }

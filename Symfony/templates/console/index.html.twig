@@ -16,9 +16,9 @@
             <div class="card-image">
                 <figure class="image is-4by3">
                     {% if console.photo is not null %}
-                    <img src="{{ asset('uploads/photos/console/' ~ console.photo) }}" alt="" srcset="">
+                    <img src="{{ asset('uploads/photos/console/' ~ console.photo) }}" alt="" class="card--picture">
                     {% else %}
-                    <img src="{{ asset('assets/img/no-pictures.svg') }}" alt="Placeholder image">
+                    <img src="{{ asset('assets/img/no-pictures.svg') }}" alt="">
                     {% endif %}
                 </figure>
             </div>

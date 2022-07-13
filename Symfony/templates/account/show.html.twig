@@ -8,7 +8,7 @@
     <div>
       <figure class="image is-128x128 mx-auto">
         {% if user.picture is not null %}
-        <img src="{{ asset('uploads/images/user/' ~ user.picture) }}" alt="" class="is-rounded profil-picture">
+        <img src="{{ asset('uploads/images/user/' ~ user.picture) }}" alt="" class="is-rounded profil--picture">
         {% else %}
         <img src="{{ asset('assets/img/user-no-picture.svg') }}" alt="">
         {% endif %}

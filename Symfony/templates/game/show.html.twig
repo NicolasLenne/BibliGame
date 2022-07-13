@@ -5,26 +5,28 @@
 {% block body %}
 <h3 class="title is-3 has-text-centered">{{ game.name }}</h3>
 
-<div class="card my-6">
-    <div class="card-image">
-        <figure class="image is-4by3">
-            {% if game.photo is not null %}
-            <img src="{{ asset('uploads/photos/game/' ~ game.photo) }}" alt="" srcset="">
-            {% else %}
-            <img src="{{ asset('assets/img/no-pictures.svg') }}" alt="Placeholder image">
-            {% endif %}
-        </figure>
-    </div>
-    <div class="card-content">
-        <div class="media">
-            <div class="media-content">
-                <p class="title is-4">{{ game.name }}</p>
-                <p class="subtitle is-6">{{ game.isLoose ? 'En loose' : 'Avec boîte d\'origine' }}</p>
-            </div>
+<div class="card my-6 card--show">
+    <div class="is-flex is-flex-direction-row is-flex-wrap-wrap">
+        <div class="card-image">
+            <figure class="image">
+                {% if game.photo is not null %}
+                <img src="{{ asset('uploads/photos/game/' ~ game.photo) }}" alt="" class="card-picture">
+                {% else %}
+                <img src="{{ asset('assets/img/no-pictures.svg') }}" alt="">
+                {% endif %}
+            </figure>
         </div>
+        <div class="card-content">
+            <div class="media">
+                <div class="media-content">
+                    <p class="title is-4">{{ game.name }}</p>
+                    <p class="subtitle is-6">{{ game.isLoose ? 'En loose' : 'Avec boîte d\'origine' }}</p>
+                </div>
+            </div>
 
-        <div class="content">
-            {{ game.comment|raw }}
+            <div class="content">
+                {{ game.comment|raw }}
+            </div>
         </div>
     </div>
     <footer class="card-footer">
