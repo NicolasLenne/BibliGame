@@ -5,7 +5,10 @@ namespace App\Controller;
 use App\Entity\Console;
 use App\Form\ConsoleType;
 use App\Service\PicturesManager;
+use Knp\Component\Pager\Paginator;
 use App\Repository\ConsoleRepository;
+use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,8 +22,24 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/", name="app_console_index", methods={"GET"})
      */
-    public function index(ConsoleRepository $consoleRepository): Response
+    public function index(ConsoleRepository $consoleRepository, PaginatorInterface $paginatorInterface): Response
     {
+        //! test en cours avec la pagination
+        // $count = $consoleRepository->createQueryBuilder('g')
+        // ->where('g.user = :user')
+        // ->setParameter('user', $this->getUser())
+        // ->select('count(g.id)')
+        // ->getQuery()
+        // ->getSingleScalarResult();
+        // ;
+
+        // $query = $consoleRepository
+        // ->createQuery('SELECT g FROM Entity\game g')
+        // ->setHint('knp_paginator.count', $count)
+        // ;
+
+        // dd($count);
+
         return $this->render('console/index.html.twig', [
             'consoles' => $consoleRepository->findBy(['user' => $this->getUser()]),
         ]);
@@ -36,6 +55,7 @@ class ConsoleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $consolePhoto = $form->get('photo')->getData();
 
             if ($consolePhoto) {
