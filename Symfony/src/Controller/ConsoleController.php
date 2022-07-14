@@ -5,10 +5,8 @@ namespace App\Controller;
 use App\Entity\Console;
 use App\Form\ConsoleType;
 use App\Service\PicturesManager;
-use Knp\Component\Pager\Paginator;
 use App\Repository\ConsoleRepository;
-use App\Repository\UserRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,23 +20,23 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/", name="app_console_index", methods={"GET"})
      */
-    public function index(ConsoleRepository $consoleRepository, PaginatorInterface $paginatorInterface): Response
+    public function index(ConsoleRepository $consoleRepository, EntityManager $em): Response
     {
         //! test en cours avec la pagination
-        // $count = $consoleRepository->createQueryBuilder('g')
-        // ->where('g.user = :user')
+        // $count = $consoleRepository->createQueryBuilder('c')
+        // ->where('c.user = :user')
         // ->setParameter('user', $this->getUser())
-        // ->select('count(g.id)')
+        // ->select('count(c.id)')
         // ->getQuery()
         // ->getSingleScalarResult();
         // ;
 
-        // $query = $consoleRepository
-        // ->createQuery('SELECT g FROM Entity\game g')
+        // $query = $em
+        // ->createQuery('SELECT c FROM Entity\Console c')
         // ->setHint('knp_paginator.count', $count)
         // ;
 
-        // dd($count);
+        // $pagination = $paginator->paginate($query, 1, 10, ['distinct' => false]);
 
         return $this->render('console/index.html.twig', [
             'consoles' => $consoleRepository->findBy(['user' => $this->getUser()]),
