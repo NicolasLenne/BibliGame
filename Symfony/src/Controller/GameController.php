@@ -19,10 +19,21 @@ class GameController extends AbstractController
     /**
      * @Route("/", name="app_game_index", methods={"GET"})
      */
-    public function index(GameRepository $gameRepository): Response
+    public function index(GameRepository $gameRepository, Request $request): Response
     {
+        $limit = 8;
+
+        $page = (int)$request->query->get('page', 1);
+
+        $games = $gameRepository->getPaginatedGames($this->getUser(), $page, $limit);
+
+        $totalGames = $gameRepository->getTotalGames($this->getUser());
+
         return $this->render('game/index.html.twig', [
-            'games' => $gameRepository->findBy(['user' => $this->getUser()]),
+            'games' => $games,
+            'totalGames' => $totalGames,
+            'page' => $page,
+            'limit' => $limit
         ]);
     }
 

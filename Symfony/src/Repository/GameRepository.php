@@ -39,6 +39,40 @@ class GameRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $user
+     * @param [type] $page
+     * @param [type] $limit
+     * @return void
+     */
+    public function getPaginatedGames($user, $page, $limit){
+        $query = $this->createQueryBuilder('g')
+        ->where('g.user = :user')
+        ->setFirstResult(($page * $limit) - $limit)
+        ->setMaxResults($limit)
+        ->setParameter('user', $user)
+        ;
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function getTotalGames($user){
+        $query = $this->createQueryBuilder('g')
+        ->select('COUNT(g)')
+        ->where('g.user = :user')
+        ->setParameter('user', $user)
+        ;
+
+        return $query->getQuery()->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Game[] Returns an array of Game objects
 //     */
