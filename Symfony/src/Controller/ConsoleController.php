@@ -20,24 +20,8 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/", name="app_console_index", methods={"GET"})
      */
-    public function index(ConsoleRepository $consoleRepository, EntityManager $em): Response
+    public function index(ConsoleRepository $consoleRepository): Response
     {
-        //! test en cours avec la pagination
-        // $count = $consoleRepository->createQueryBuilder('c')
-        // ->where('c.user = :user')
-        // ->setParameter('user', $this->getUser())
-        // ->select('count(c.id)')
-        // ->getQuery()
-        // ->getSingleScalarResult();
-        // ;
-
-        // $query = $em
-        // ->createQuery('SELECT c FROM Entity\Console c')
-        // ->setHint('knp_paginator.count', $count)
-        // ;
-
-        // $pagination = $paginator->paginate($query, 1, 10, ['distinct' => false]);
-
         return $this->render('console/index.html.twig', [
             'consoles' => $consoleRepository->findBy(['user' => $this->getUser()]),
         ]);
