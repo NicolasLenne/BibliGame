@@ -21,7 +21,7 @@ class GameController extends AbstractController
      */
     public function index(GameRepository $gameRepository, Request $request): Response
     {
-        $limit = 8;
+        $limit = 2;
 
         $page = (int)$request->query->get('page', 1);
 

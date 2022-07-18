@@ -46,13 +46,13 @@
     </div>
     {% set pages = (totalGames / limit)|round(0, 'ceil') %}
     {% if games is not null %}
-    <nav class="pagination is-centered my-2" role="navigation" aria-label="pagination">
-        <a href="{{ (page > 1) ? '?page=' ~ (page - 1) : '' }}" class="pagination-previous {{ (page == 1) ? 'is-disabled' : '' }}" {{ (page == 1) ? 'disabled' : '' }}>Page précédente</a>
-        <a href="{{ (page < pages) ? '?page=' ~ (page + 1) : '' }}" class="pagination-next {{ (page == pages) ? 'is-disabled' : '' }}" {{ (page == pages) ? 'disabled' : '' }}>Page suivante</a>
+    <nav class="pagination my-2" role="navigation" aria-label="pagination">
         <ul class="pagination-list">
+            <li><a href="{{ (page > 1) ? '?page=' ~ (page - 1) : '' }}" class="pagination-previous {{ (page == 1) ? 'is-disabled' : '' }}" {{ (page == 1) ? 'disabled' : '' }}><i class="fa-solid fa-arrow-left"></i></a></li>
             {% for item in 1..pages %}
             <li><a href="?page={{ item }}" class="pagination-link {{ (page == item) ? 'is-current' : ''}}" aria-label="Goto page 1">{{ item }}</a></li>
             {% endfor %}
+            <a href="{{ (page < pages) ? '?page=' ~ (page + 1) : '' }}" class="pagination-next {{ (page == pages) ? 'is-disabled' : '' }}" {{ (page == pages) ? 'disabled' : '' }}><i class="fa-solid fa-arrow-right"></i></a>
         </ul>
     </nav>
     {% endif %}
