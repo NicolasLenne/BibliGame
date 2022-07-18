@@ -48,11 +48,18 @@
     {% if games is not null %}
     <nav class="pagination my-2" role="navigation" aria-label="pagination">
         <ul class="pagination-list">
-            <li><a href="{{ (page > 1) ? '?page=' ~ (page - 1) : '' }}" class="pagination-previous {{ (page == 1) ? 'is-disabled' : '' }}" {{ (page == 1) ? 'disabled' : '' }}><i class="fa-solid fa-arrow-left"></i></a></li>
+            <li><a href="{{ (page > 1) ? '?page=' ~ (page - 1) : '' }}" class="pagination-link {{ (page == 1) ? 'is-disabled' : '' }}" {{ (page == 1) ? 'disabled' : '' }}><i class="fa-solid fa-arrow-left"></i></a></li>
+            {% if pages > 5 %}
+            <li><a href="?page=1" class="pagination-link {{ (page == 1) ? 'is-current' : '' }}">1</a></li>
+
+            <li><a href="?page={{ pages }}" class="pagination-link {{ (page == pages) ? 'is-current' : '' }}">{{ pages }}</a></li>
+            {% else %}
+                
             {% for item in 1..pages %}
             <li><a href="?page={{ item }}" class="pagination-link {{ (page == item) ? 'is-current' : ''}}" aria-label="Goto page 1">{{ item }}</a></li>
             {% endfor %}
-            <a href="{{ (page < pages) ? '?page=' ~ (page + 1) : '' }}" class="pagination-next {{ (page == pages) ? 'is-disabled' : '' }}" {{ (page == pages) ? 'disabled' : '' }}><i class="fa-solid fa-arrow-right"></i></a>
+            {% endif %}
+            <a href="{{ (page < pages) ? '?page=' ~ (page + 1) : '' }}" class="pagination-link {{ (page == pages) ? 'is-disabled' : '' }}" {{ (page == pages) ? 'disabled' : '' }}><i class="fa-solid fa-arrow-right"></i></a>
         </ul>
     </nav>
     {% endif %}
